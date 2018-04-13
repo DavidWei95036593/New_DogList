@@ -1,13 +1,12 @@
 const mongoose = require(`mongoose`);
 
-const dogSchema = mongoose.Schema({
+const Schema = mongoose.Schema;
+const dogSchema = new Schema({
   name:{
     type: String,
     required: true,
     minLength:1,
     unique:true
-
-
   },
   age:{
     type:Number,
