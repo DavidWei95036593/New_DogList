@@ -5,6 +5,7 @@ const {Dog} = require('./models/dog.js');
 const hbs = require(`hbs`);
 const path = require(`path`);
 const _ = require(`lodash`);
+const methodOverride = require(`method-override`);
 const app = express();
 //hbs set up
 app.set('view engine','hbs');
@@ -20,13 +21,15 @@ mongoose.connect(database)
   }).catch(() => {
     console.log('unable to connect to database');
   })
-
+//-------------------middle ware---------------------
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride(`_method`));
 app.get('/', (req, res) => {
-  res.redirect(`/dogs/new`)
+  res.redirect(`/dogs/show`)
   res.send("GET /");
 })
+//-------------------middle ware---------------------
 
 app.get(`/dogs`,(req,res)=>{
   Dog.find()
@@ -58,6 +61,10 @@ app.post('/dogs', (req, res) => {
     .catch(e => {
       res.status(400).send();
     })}
+})
+
+app.delete(`/dogs/:id`,(req,res)=>{
+  console.log("hit the delete rout");
 })
 
 app.listen(port, () => {
