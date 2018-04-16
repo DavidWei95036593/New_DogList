@@ -7,6 +7,9 @@ const path = require(`path`);
 const _ = require(`lodash`);
 const methodOverride = require(`method-override`);
 const app = express();
+let dogs;
+let name;
+let age;
 //hbs set up
 app.set('view engine','hbs');
 app.set('views',path.join(__dirname,'../app/views'));
@@ -26,12 +29,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride(`_method`));
 app.get('/', (req, res) => {
-  res.redirect(`/dogs/show`)
+  res.redirect(`/dogs/new`)
   res.send("GET /");
 })
 //-------------------middle ware---------------------
 
 app.get(`/dogs`,(req,res)=>{
+
   Dog.find()
   .then(dogs=>{
     res.send(dogs);
@@ -44,8 +48,19 @@ app.get(`/dogs`,(req,res)=>{
 app.get(`/dogs/new`,(req,res)=>{
   res.render(`./dogs/new`);
 })
-
+app.get(`/dogs/home`,(req,res)=>{
+  res.render(`./dogs/home`,{
+    dogs,
+    name,
+    age
+  });
+})
+app.get(`/dogs/show`,(req,res)=>{
+  res.render(`./dogs/show`)
+})
 app.post('/dogs', (req, res) => {
+
+
   if(!req.body.name||!req.body.age){
     console.log("bad request");
     res.status(400).send();
@@ -56,7 +71,7 @@ app.post('/dogs', (req, res) => {
   })
   dog.save()
     .then(dog => {
-      res.redirect('/dogs');
+      res.redirect('/dogs/home');
     })
     .catch(e => {
       res.status(400).send();
