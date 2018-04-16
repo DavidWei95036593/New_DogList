@@ -7,9 +7,7 @@ const path = require(`path`);
 const _ = require(`lodash`);
 const methodOverride = require(`method-override`);
 const app = express();
-let dogs;
-let name;
-let age;
+
 //hbs set up
 app.set('view engine','hbs');
 app.set('views',path.join(__dirname,'../app/views'));
@@ -28,10 +26,12 @@ mongoose.connect(database)
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride(`_method`));
+app.use(express.static(path.join(__dirname,`../public`)))
 app.get('/', (req, res) => {
   res.redirect(`/dogs/new`)
   res.send("GET /");
 })
+
 //-------------------middle ware---------------------
 
 app.get(`/dogs`,(req,res)=>{
@@ -47,12 +47,10 @@ app.get(`/dogs`,(req,res)=>{
 
 app.get(`/dogs/new`,(req,res)=>{
   res.render(`./dogs/new`);
-})
+});
 app.get(`/dogs/home`,(req,res)=>{
   res.render(`./dogs/home`,{
-    dogs,
-    name,
-    age
+
   });
 })
 app.get(`/dogs/show`,(req,res)=>{
