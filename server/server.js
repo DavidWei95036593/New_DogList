@@ -49,35 +49,40 @@ app.get(`/dogs/new`,(req,res)=>{
   res.render(`./dogs/new`);
 });
 app.get(`/dogs/home`,(req,res)=>{
-  res.render(`./dogs/home`,{
-  });
+  Dog.find()
+  .then((dogs) => {
+    res.render(`./dogs/home`,{dogs})
+
+  })
 })
-app.get(`/dogs/show`,(req,res)=>{
-  res.render(`./dogs/show`)
-})
+
+
 app.post('/dogs', (req, res) => {
-
-
+  let name = req.body.name;
+  let age = req.body.age;
   if(!req.body.name||!req.body.age){
     console.log("bad request");
     res.status(400).send();
   }else{
-  const dog = new Dog({
-    name: req.body.name,
-    age: req.body.age
-  })
-  dog.save()
+    const dog = new Dog({
+      name: req.body.name,
+      age: req.body.age
+    })
+    dog.save()
     .then(dog => {
       res.redirect('/dogs/home');
     })
     .catch(e => {
       res.status(400).send();
     })}
+  })
+app.get(`/dogs/show`,(req,res)=>{
+  res.render(`./dogs/show`)
 })
 
-// app.delete(`/dogs/:id`,(req,res)=>{
-//   console.log("hit the delete rout");
-// })
+app.delete(`/dogs/delete`,(req,res)=>{
+  console.log("hit the delete rout");
+})
 
 app.listen(port, () => {
   console.log( `Listening on port ${port}`);
