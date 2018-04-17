@@ -28,8 +28,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride(`_method`));
 app.use(express.static(path.join(__dirname,`../public`)))
 app.get('/', (req, res) => {
-  res.redirect(`/dogs/new`)
-  res.send("GET /");
+  res.redirect(`/dogs/home`)
+  // res.send("GET /");
 })
 
 //-------------------middle ware---------------------
@@ -76,9 +76,9 @@ app.post('/dogs', (req, res) => {
     })}
 })
 
-app.delete(`/dogs/:id`,(req,res)=>{
-  console.log("hit the delete rout");
-})
+// app.delete(`/dogs/:id`,(req,res)=>{
+//   console.log("hit the delete rout");
+// })
 
 app.listen(port, () => {
   console.log( `Listening on port ${port}`);
