@@ -50,7 +50,6 @@ app.get(`/dogs/new`,(req,res)=>{
 });
 app.get(`/dogs/home`,(req,res)=>{
   res.render(`./dogs/home`,{
-
   });
 })
 app.get(`/dogs/show`,(req,res)=>{
