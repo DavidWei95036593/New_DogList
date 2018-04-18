@@ -52,9 +52,19 @@ app.get(`/dogs/home`,(req,res)=>{
   Dog.find()
   .then((dogs) => {
     res.render(`./dogs/home`,{dogs})
-
   })
 })
+app.get(`/dogs/show/`,(req,res)=>{
+    const id= req.params.id;
+    Dog.findById(id)
+    .then(dog=>{
+      res.send({dogs});
+    },e=>{
+      res.status(404).send(e);
+    })
+  res.render(`./dogs/show`)
+})
+
 
 
 app.post('/dogs', (req, res) => {
@@ -76,11 +86,10 @@ app.post('/dogs', (req, res) => {
       res.status(400).send();
     })}
   })
-app.get(`/dogs/show`,(req,res)=>{
-  res.render(`./dogs/show`)
-})
+
 
 app.delete(`/dogs/delete`,(req,res)=>{
+  // res.render(`./dogs/delete`)
   console.log("hit the delete rout");
 })
 

@@ -7,8 +7,21 @@
   <body>
     <h1>DogList</h1>
     <a href="new">Create</a>
+    <div id="dogs">
+      <p>hi</p>
 
-    
+        <p id="dogName">&nbsp;{{name}}</p>
+        <p id="dogAge">&nbsp;{{age}} years old</p>
+        <p>{{id}}</p>
+        <form action="/dogs/{{id}}?_method=DELETE" method="post">
+
+          <input type="submit" value="Delete this Dog">
+        </form>
+
+    </div>
+
+
+
   </body>
   <link rel="stylesheet" href="/css/show.css">
 </html>

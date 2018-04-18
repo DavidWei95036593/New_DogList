@@ -9,6 +9,10 @@ const dogSchema = mongoose.Schema({
   age: {
     type: Number,
     required: true
+  },
+  picture:{
+    stype:String,
+    required:false
   }
 })
 

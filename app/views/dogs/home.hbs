@@ -13,11 +13,13 @@
   <button type="button" name="button"><a href="new">Create</a></button>
   <button type="button" name="button"><a href="delete">Delete</a></button>
     <div id="dogs">
-      <p>hi</p>
+    <p>Dog List</p>
 
         {{#each dogs}}
         <p id="dogName">&nbsp;{{name}}</p>
         <p id="dogAge">&nbsp;{{age}} years old</p>
+        <p>{{id}}</p>
+        <button type="button" name="button"><a href="show">Update or Delete</a></button>
         {{/each}}
     </div>
 
