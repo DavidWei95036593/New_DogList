@@ -85,13 +85,15 @@ app.post('/dogs', (req, res) => {
   })
 
 
-app.delete(`/dogs/delete/:id`,(req,res)=>{
-  const id = req.param.id;
-  Dog.remove({
-    _id:id
+app.delete(`/dogs/:id`,(req,res)=>{
+  const id = req.params.id;
+  Dog.findByIdAndRemove(id)
+    .then(Dogs => {
+      res.redirect(`home`)
+    }).catch (e => {
+      res.status(404).send(e);
+    })
   })
-  console.log("hit the delete rout");
-})
 
 app.get(`/dogs/:id`,(req,res)=>{
     const id= req.params.id;
