@@ -54,29 +54,26 @@ app.get(`/dogs/home`,(req,res)=>{
     res.render(`./dogs/home`,{dogs})
   })
 })
-app.get(`/dogs/show/`,(req,res)=>{
-    const id= req.params.id;
-    Dog.findById(id)
-    .then(dog=>{
-      res.send({dogs});
-    },e=>{
-      res.status(404).send(e);
-    })
-  res.render(`./dogs/show`)
-})
+
 
 
 
 app.post('/dogs', (req, res) => {
   let name = req.body.name;
   let age = req.body.age;
+  let picture = req.body.picture;
+  let personality = req.body.personality;
+  let description = req.body.description;
   if(!req.body.name||!req.body.age){
     console.log("bad request");
     res.status(400).send();
   }else{
     const dog = new Dog({
       name: req.body.name,
-      age: req.body.age
+      age: req.body.age,
+      picture: req.body.picture,
+      personality: req.body.personality,
+      description: req.body.description
     })
     dog.save()
     .then(dog => {
@@ -88,11 +85,25 @@ app.post('/dogs', (req, res) => {
   })
 
 
-app.delete(`/dogs/delete`,(req,res)=>{
-  // res.render(`./dogs/delete`)
+app.delete(`/dogs/delete/:id`,(req,res)=>{
+  const id = req.param.id;
+  Dog.remove({
+    _id:id
+  })
   console.log("hit the delete rout");
 })
 
+app.get(`/dogs/:id`,(req,res)=>{
+    const id= req.params.id;
+    console.log(id);
+    Dog.findById(id)
+    .then(dog=>{
+      console.log(dog);
+    res.render(`./dogs/show.hbs`,{dog});
+  }).catch(e=>{
+      res.status(404).send(e);
+    })
+})
 app.listen(port, () => {
   console.log( `Listening on port ${port}`);
 })

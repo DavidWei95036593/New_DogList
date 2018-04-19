@@ -16,10 +16,11 @@
     <p>Dog List</p>
 
         {{#each dogs}}
-        <p id="dogName">&nbsp;{{name}}</p>
-        <p id="dogAge">&nbsp;{{age}} years old</p>
-        <p>{{id}}</p>
-        <button type="button" name="button"><a href="show">Update or Delete</a></button>
+        <p id="dogName">Name:&nbsp;{{name}}</p>
+        <p id="dogAge">Age:&nbsp;{{age}} years old</p>
+      
+        <!-- <p>{{id}}</p> -->
+        <button type="button" name="button"><a href="{{id}}">MoreInfor</a></button>
         {{/each}}
     </div>
 

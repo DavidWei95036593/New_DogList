@@ -5,17 +5,19 @@
     <title>Show</title>
   </head>
   <body>
-    <h1>DogList</h1>
-    <a href="new">Create</a>
+    <h1>{{dog.name}}</h1>
+    <button type="button" name="button">  <a href="home">Home</a></button>
+    <button type="button" name="button"><a href="new">Create</a></button>
+
     <div id="dogs">
-      <p>hi</p>
 
-        <p id="dogName">&nbsp;{{name}}</p>
-        <p id="dogAge">&nbsp;{{age}} years old</p>
-        <p>{{id}}</p>
-        <form action="/dogs/{{id}}?_method=DELETE" method="post">
-
-          <input type="submit" value="Delete this Dog">
+        <p id="dogAge">&nbsp;{{dog.age}} years old</p>
+        <p id="dogDescription">Description:&nbsp;{{dog.description}}</p>
+        <p id="dogPersonality">Personality:&nbsp;{{dog.personality}}</p>
+        <br>
+        <img id="dogPicture" src="{{dog.picture}}" alt="">
+        <form action="/dogs/{{dog.id}}?_method=DELETE" method="post">
+        <input type="submit" value="Delete this Dog">
         </form>
 
     </div>
