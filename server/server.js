@@ -95,6 +95,25 @@ app.delete(`/dogs/:id`,(req,res)=>{
     })
   })
 
+  app.patch('dogs/:id', (req, res) => {
+    const id = req.params.id;
+    const body = _.pick(req.body, ['name', 'age','description','personality','picture']);
+
+    Dog.findByIdAndUpdate(id, {$set: body}, {new: true})
+      .then(Dog => {
+        if (!Dog) {
+          res.status(404).send()
+        } else {
+          res.send(Dog);
+        }
+
+      }).catch(e => {
+        res.status(404).send(e);
+      })
+  })
+
+
+
 app.get(`/dogs/:id`,(req,res)=>{
     const id= req.params.id;
     console.log(id);

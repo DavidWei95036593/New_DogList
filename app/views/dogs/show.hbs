@@ -16,7 +16,9 @@
         <p id="dogPersonality">Personality:&nbsp;{{dog.personality}}</p>
         <br>
         <img id="dogPicture" src="{{dog.picture}}" alt="">
-        
+        <form class="" action="/dogs/{{dog.id}}?_method=UPDATE" method="post">
+          <input type="submit" name="" value="Update">
+        </form>
         <form action="/dogs/{{dog.id}}?_method=DELETE" method="post">
         <input type="submit" value="Delete this Dog">
         </form>
