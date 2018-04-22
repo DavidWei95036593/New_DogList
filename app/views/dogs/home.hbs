@@ -11,14 +11,14 @@
     <h1>MyDogList</h1>
   </center>
   <button type="button" name="button"><a href="new">Create</a></button>
-  <button type="button" name="button"><a href="delete">Delete</a></button>
+  <!-- <button type="button" name="button"><a href="delete">Delete</a></button> -->
     <div id="dogs">
     <p>Dog List</p>
 
         {{#each dogs}}
         <p id="dogName">Name:&nbsp;{{name}}</p>
         <p id="dogAge">Age:&nbsp;{{age}} years old</p>
-      
+
         <!-- <p>{{id}}</p> -->
         <button type="button" name="button"><a href="{{id}}">MoreInfor</a></button>
         {{/each}}
