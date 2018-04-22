@@ -24,10 +24,10 @@
       <input id="dogDescription" type="text" name="description">
       <br>
       <label for="dogPersonality">Personality</label>
-      <input id="dogPersonality" type="text" name="personality">
+      <input id="dogPersonality" type="text" name="personality"placeholder="{{dogs.id}}">
       <!-- <input type="submit" value="Update the Dog"> -->
     </form>
-    <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
+    <form class="" action="/dogs/{{dogs.id}}?_method=PATCH" method="post">
       <input type="submit" name="" value="Update this Dog">
     </form>
   </body>

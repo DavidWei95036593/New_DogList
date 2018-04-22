@@ -47,9 +47,9 @@ app.get(`/dogs`,(req,res)=>{
   })
 })
 app.get(`/dogs/update`,(req,res)=>{
-  Dog.find().then((dog)=>{
-    console.log();
-    res.render(`./dogs/update`,{dog})
+  Dog.find().then((dogs)=>{
+    console.log(dogs);
+    res.render(`./dogs/update`,{dogs})
   })
 })
 app.get(`/dogs/new`,(req,res)=>{
