@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 
   <head>
+    <link rel="stylesheet" href="/css/home.css">
     <meta charset="utf-8">
     <title>Home</title>
 
@@ -11,14 +12,15 @@
     <h1>MyDogList</h1>
   </center>
   <button type="button" name="button"><a href="new">Create</a></button>
-  <button type="button" name="button"><a href="delete">Delete</a></button>
+
     <div id="dogs">
     <p>Dog List</p>
 
         {{#each dogs}}
+        <img id="dogPicture" src="{{picture}}" alt="">
         <p id="dogName">Name:&nbsp;{{name}}</p>
         <p id="dogAge">Age:&nbsp;{{age}} years old</p>
-      
+
         <!-- <p>{{id}}</p> -->
         <button type="button" name="button"><a href="{{id}}">MoreInfor</a></button>
         {{/each}}
@@ -26,5 +28,4 @@
 
 
   </body>
-  <link rel="stylesheet" href="/css/master.css">
 </html>

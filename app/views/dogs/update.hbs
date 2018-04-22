@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
   <head>
-    <link rel="stylesheet" href="/css/new.css">
+    <link rel="stylesheet" href="/css/update.css">
     <meta charset="utf-8">
     <title>New Dog</title>
   </head>
@@ -25,7 +25,10 @@
       <br>
       <label for="dogPersonality">Personality</label>
       <input id="dogPersonality" type="text" name="personality">
-      <input type="submit" value="Create New Dog">
+      <!-- <input type="submit" value="Update the Dog"> -->
+    </form>
+    <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
+      <input type="submit" name="" value="Update this Dog">
     </form>
   </body>
 </html>
