@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="/css/show.css">
     <meta charset="utf-8">
     <title>Show</title>
   </head>
@@ -10,7 +9,6 @@
     <button type="button" name="button">  <a href="home">Home</a></button>
     <button type="button" name="button"><a href="new">Create</a></button>
 
-
     <div id="dogs">
 
         <p id="dogAge">&nbsp;{{dog.age}} years old</p>
@@ -18,20 +16,26 @@
         <p id="dogPersonality">Personality:&nbsp;{{dog.personality}}</p>
         <br>
         <img id="dogPicture" src="{{dog.picture}}" alt="">
-
+        <form class="" action="/dogs/{{dog.id}}?_method=UPDATE" method="post">
+          <input type="submit" name="" value="Update">
+        </form>
         <form action="/dogs/{{dog.id}}?_method=DELETE" method="post">
         <input type="submit" value="Delete this Dog">
         </form>
+<<<<<<< HEAD
         <!-- <button type="button" name="button">  <a href="update">update</a></button> -->
          <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
           <input type="submit" name="" value="Update this Dog">
         </form>
 
 
+=======
+>>>>>>> parent of 1009010... forgot to update
 
     </div>
 
 
 
   </body>
+  <link rel="stylesheet" href="/css/show.css">
 </html>

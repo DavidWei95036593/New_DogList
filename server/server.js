@@ -1,5 +1,3 @@
-//heroku link:https://secure-inlet-95840.herokuapp.com/
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -96,26 +94,22 @@ app.delete(`/dogs/:id`,(req,res)=>{
   const id = req.params.id;
   Dog.findByIdAndRemove(id)
     .then(Dogs => {
-
       res.redirect(`home`)
     }).catch (e => {
       res.status(404).send(e);
     })
   })
 
-  app.patch('/dogs/:id', (req, res) => {
-    // console.log("hi");
+  app.patch('dogs/:id', (req, res) => {
     const id = req.params.id;
-    Dog.findByIdAndUpdate(id, {name:req.params.name,age:req.params.age,description:req.params.description,personality:req.params.personality,picture:req.params.picture})
+    const body = _.pick(req.body, ['name', 'age','description','personality','picture']);
 
+    Dog.findByIdAndUpdate(id, {$set: body}, {new: true})
       .then(Dog => {
-
         if (!Dog) {
           res.status(404).send()
         } else {
-          console.log("hi");
-            // res.send()
-          res.redirect('update');
+          res.send(Dog);
         }
 
       }).catch(e => {
@@ -127,10 +121,10 @@ app.delete(`/dogs/:id`,(req,res)=>{
 
 app.get(`/dogs/:id`,(req,res)=>{
     const id= req.params.id;
-
+    console.log(id);
     Dog.findById(id)
     .then(dog=>{
-
+      console.log(dog);
     res.render(`./dogs/show.hbs`,{dog});
   }).catch(e=>{
       res.status(404).send(e);
