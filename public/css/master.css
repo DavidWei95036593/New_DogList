@@ -1,11 +1,19 @@
 html {
-  color: black;
-  /* font-family: 'Patrick Hand', helvetica; */
-  /* font-variant: small-caps; */
+
+  background:
+  linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)),
+  url('http://images.all-free-download.com/images/graphicthumb/dog_foot_prints_background_repeating_design_6828604.jpg');
+  /* background-image: url(`http://www.catgames.co/wp-content/uploads/2018/02/web-page-color-picker-funycoloring-background.jpg`) */
+  /* background-color:red; */
+  color: #333;
   margin: 20px;
 }
-
+.items{
+  color:darkred;
+  font-weight: bold;
+}
 #create {
+  color:black;
   height: 50px;
   width: 300px;
   font-size: 30px;
@@ -18,9 +26,7 @@ html {
 .dogCard {
   grid-column-start:1fr;
   grid-column-end:1fr;
-  border: solid;
   border-width: 5px;
-  border-color: yellow;
   padding: 10px;
   width: 40%;
 }
@@ -53,8 +59,8 @@ input {
 button {
   background-color: lightgray;
   border-radius: 5px;
-  height: 40px;
-  width: 150px;
+  height: 100%;
+  width:25%;
   font-family: 'Patrick Hand', cursive;
   font-size: 20px;
 }
@@ -70,7 +76,6 @@ h1 {
 
 img {
   width:100%;
-
   margin: 20px 0px;
 }
 
