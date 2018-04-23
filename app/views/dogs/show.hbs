@@ -16,21 +16,17 @@
         <p id="dogPersonality">Personality:&nbsp;{{dog.personality}}</p>
         <br>
         <img id="dogPicture" src="{{dog.picture}}" alt="">
-        <form class="" action="/dogs/{{dog.id}}?_method=UPDATE" method="post">
-          <input type="submit" name="" value="Update">
-        </form>
+
         <form action="/dogs/{{dog.id}}?_method=DELETE" method="post">
         <input type="submit" value="Delete this Dog">
         </form>
-
-        <!-- <button type="button" name="button">  <a href="update">update</a></button> -->
-         <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
-          <input type="submit" name="" value="Update this Dog">
+        <form action="/dogs/{{dog.id}}" method="post">
+          <input type="submit" name="" value="Update This Dog">
         </form>
 
-
-=======
->>>>>>> parent of 1009010... forgot to update
+         <!-- <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
+          <input type="submit" name="" value="Update this Dog">
+        </form> -->
 
     </div>
 

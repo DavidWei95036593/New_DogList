@@ -46,7 +46,7 @@ app.get(`/dogs`,(req,res)=>{
 })
 app.get(`/dogs/update`,(req,res)=>{
   Dog.find().then((dogs)=>{
-    console.log(dogs);
+
     res.render(`./dogs/update`,{dogs})
   })
 })
@@ -90,6 +90,34 @@ app.post('/dogs', (req, res) => {
   })
 
 
+  app.post('/dogs/:id', (req, res) => {
+    let name = req.body.name;
+    let age = req.body.age;
+    let picture = req.body.picture;
+    let personality = req.body.personality;
+    let description = req.body.description;
+
+      const dog = new Dog({
+        name: req.body.name,
+        age: req.body.age,
+        picture: req.body.picture,
+        personality: req.body.personality,
+        description: req.body.description
+      })
+      dog.save()
+      .then(dog => {
+        res.redirect('/dogs/home');
+      })
+      .catch(e => {
+        res.status(400).send();
+      })
+    })
+
+
+
+
+
+
 app.delete(`/dogs/:id`,(req,res)=>{
   const id = req.params.id;
   Dog.findByIdAndRemove(id)
@@ -100,16 +128,17 @@ app.delete(`/dogs/:id`,(req,res)=>{
     })
   })
 
-  app.patch('dogs/:id', (req, res) => {
+  app.patch('/dogs/:id', (req, res) => {
     const id = req.params.id;
-    const body = _.pick(req.body, ['name', 'age','description','personality','picture']);
 
-    Dog.findByIdAndUpdate(id, {$set: body}, {new: true})
+    Dog.findByIdAndUpdate(id, {name:req.params.name,age:req.params.age,description:req.params.description})
       .then(Dog => {
+
         if (!Dog) {
           res.status(404).send()
         } else {
-          res.send(Dog);
+
+          res.render(`./dogs/update.hbs`,{Dog});
         }
 
       }).catch(e => {
@@ -121,10 +150,10 @@ app.delete(`/dogs/:id`,(req,res)=>{
 
 app.get(`/dogs/:id`,(req,res)=>{
     const id= req.params.id;
-    console.log(id);
+
     Dog.findById(id)
     .then(dog=>{
-      console.log(dog);
+
     res.render(`./dogs/show.hbs`,{dog});
   }).catch(e=>{
       res.status(404).send(e);

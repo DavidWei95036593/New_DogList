@@ -8,9 +8,9 @@
   </head>
   <body>
 
-    <p id = "intro">Add a new DOG!</p>
+    <p id = "intro">Update this DOG!</p>
     <p>Hi</p>
-    <form action="/dogs" method="post">
+     <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
       <label for="dogName">Name</label>
       <input id="dogName" type="text" name="name">
       <br>
@@ -25,10 +25,8 @@
       <br>
       <label for="dogPersonality">Personality</label>
       <input id="dogPersonality" type="text" name="personality"placeholder="{{dogs.id}}">
-      <!-- <input type="submit" value="Update the Dog"> -->
+      <input type="submit" value="Update the Dog">
     </form>
-    <form class="" action="/dogs/{{dogs.id}}?_method=PATCH" method="post">
-      <input type="submit" name="" value="Update this Dog">
-    </form>
+
   </body>
 </html>
