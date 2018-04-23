@@ -125,14 +125,16 @@ app.delete(`/dogs/:id`,(req,res)=>{
 
   app.patch('/dogs/:id', (req, res) => {
     const id = req.params.id;
-    Dog.findByIdAndUpdate(id, {name:req.params.name,age:req.params.age,description:req.params.description})
+    const body = req.body;
+    console.log(body);
+    Dog.findByIdAndUpdate(id,body)
       .then(Dog => {
 
         if (!Dog) {
           res.status(404).send()
         } else {
-          res.send(Dog);
-          res.redirect('/dogs/home');
+          // res.send(Dog);
+          res.redirect(`/dogs/${id}`);
         }
 
       }).catch(e => {
