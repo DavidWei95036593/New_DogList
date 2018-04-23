@@ -44,12 +44,7 @@ app.get(`/dogs`,(req,res)=>{
     res.status(404).send();
   })
 })
-app.get(`/dogs/update`,(req,res)=>{
-  Dog.find().then((dogs)=>{
 
-    res.render(`./dogs/update`,{dogs})
-  })
-})
 app.get(`/dogs/new`,(req,res)=>{
   res.render(`./dogs/new`);
 });
@@ -159,6 +154,17 @@ app.get(`/dogs/:id`,(req,res)=>{
       res.status(404).send(e);
     })
 })
+
+
+app.get(`/dogs/update`,(req,res)=>{
+  Dog.find().then((dogs)=>{
+
+    res.render(`./dogs/update`,{dogs})
+  })
+})
+
+
+
 app.listen(port, () => {
   console.log( `Listening on port ${port}`);
 })

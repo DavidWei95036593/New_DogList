@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1>{{dog.name}}</h1>
-    <button type="button" name="button">  <a href="home">Return to Home</a></button>
+    <button type="button" name="button"><a href="home">Return to Home</a></button>
     <button type="button" name="button"><a href="new">Create A New One</a></button>
 
     <div id="dogs">
@@ -15,15 +15,13 @@
         <p id="dogDescription">Description:&nbsp;{{dog.description}}</p>
         <p id="dogPersonality">Personality:&nbsp;{{dog.personality}}</p>
         <br>
-        <img id="dogPicture" src="{{dog.picture}}" alt="">
+        <img id="dogPicture" src="{{dog.picture}}" alt="No Picture Provided">
 
         <form action="/dogs/{{dog.id}}?_method=DELETE" method="post">
         <input type="submit" value="Delete this Dog">
         </form>
-        <form action="/dogs/{{dog.id}}" method="post">
-          <input type="submit" name="" value="Update This Dog">
-        </form>
 
+        <button type="button" name="button"><a href="update">Update this Dog</a></button>
          <!-- <form class="" action="/dogs/{{dog.id}}?_method=PATCH" method="post">
           <input type="submit" name="" value="Update this Dog">
         </form> -->
