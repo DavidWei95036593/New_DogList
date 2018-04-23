@@ -126,7 +126,6 @@ app.delete(`/dogs/:id`,(req,res)=>{
   app.patch('/dogs/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    console.log(body);
     Dog.findByIdAndUpdate(id,body)
       .then(Dog => {
 
