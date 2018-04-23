@@ -125,15 +125,14 @@ app.delete(`/dogs/:id`,(req,res)=>{
 
   app.patch('/dogs/:id', (req, res) => {
     const id = req.params.id;
-
     Dog.findByIdAndUpdate(id, {name:req.params.name,age:req.params.age,description:req.params.description})
       .then(Dog => {
 
         if (!Dog) {
           res.status(404).send()
         } else {
-
-          res.render(`./dogs/update.hbs`,{Dog});
+          res.send(Dog);
+          res.redirect('/dogs/home');
         }
 
       }).catch(e => {
@@ -154,13 +153,13 @@ app.get(`/dogs/:id`,(req,res)=>{
       res.status(404).send(e);
     })
 })
-
-
-app.get(`/dogs/update`,(req,res)=>{
-  Dog.find().then((dogs)=>{
-
-    res.render(`./dogs/update`,{dogs})
+app.get(`/dogs/:id/update`,(req,res)=>{
+  Dog.findById(req.params.id).then((dog)=>{
+    res.render(`./dogs/update`,{dog})
   })
+  .catch(e=>{
+      res.status(404).send(e);
+    })
 })
 
 

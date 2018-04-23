@@ -15,7 +15,7 @@ html {
 .dogCard {
   border: solid;
   border-width: 5px;
-  border-color: blue;
+  border-color: yellow;
   padding: 10px;
   width: 40%;
 }
