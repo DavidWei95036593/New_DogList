@@ -132,7 +132,6 @@ app.delete(`/dogs/:id`,(req,res)=>{
         if (!Dog) {
           res.status(404).send()
         } else {
-          // res.send(Dog);
           res.redirect(`/dogs/${id}`);
         }
 

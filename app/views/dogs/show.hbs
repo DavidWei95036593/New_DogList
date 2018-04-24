@@ -17,7 +17,7 @@
         <br>
         <img id="dogPicture" src="{{dog.picture}}" alt="No Picture Provided">
 
-        <form action="/dogs/{{dog.id}}?_method=DELETE" method="post">
+        <form id="delete" action="/dogs/{{dog.id}}?_method=DELETE" method="post">
         <input type="submit" value="Delete this Dog">
         </form>
         <button type="button" name="button"><a href="/dogs/{{dog.id}}/update">Update this Dog</a></button>
