@@ -11,7 +11,7 @@
     <div class="items">
 
 
-    <form action="/dogs" method="post">
+    <form action="/dogs" method="post"enctype="multipart/form-data">
       <label for="dogName">Name</label>
       <input id="dogName" type="text" name="name">
       <br>
@@ -19,7 +19,7 @@
       <input id="dogAge" type="text" name="age">
       <br>
       <label for="dogPicture">PictureUrl</label>
-      <input id="dogPicture" type="text" name="picture">
+      Upload a Picture  <input type="file" name="picture">
       <br>
       <label for="dogDescription">Description</label>
       <input id="dogDescription" type="text" name="description">
@@ -28,6 +28,9 @@
       <input id="dogPersonality" type="text" name="personality">
       <input type="submit" value="Create New Dog">
     </form>
+
+
+
       </div>
   </body>
 <link rel="stylesheet" href="/css/master.css">

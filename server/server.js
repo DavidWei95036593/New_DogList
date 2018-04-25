@@ -2,11 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const {Dog} = require('./models/dog.js');
+const multer = require(`multer`);
 const hbs = require(`hbs`);
 const path = require(`path`);
 const _ = require(`lodash`);
 const methodOverride = require(`method-override`);
 const app = express();
+
+const upload = multer({ dest: './public/images' });
+
+
 
 //hbs set up
 app.set('view engine','hbs');
@@ -55,6 +60,11 @@ app.get(`/dogs/home`,(req,res)=>{
   })
 })
 
+
+app.post(`/dogs`,upload.single(`picture`),(req,res)=>{
+  console.log(req.body);
+  console.log(req.file);
+})
 
 
 
@@ -161,6 +171,7 @@ app.get(`/dogs/:id/update`,(req,res)=>{
       res.status(404).send(e);
     })
 })
+
 
 
 
