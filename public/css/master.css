@@ -1,36 +1,37 @@
 html {
-  background-image:url('http://3.bp.blogspot.com/-B9QZnH3x0Gc/Uh91Ne36-7I/AAAAAAAAFvw/eGhCHsj943I/s1600/Background-Picture5.jpg');
+
+  background:
+  linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)),
+  url('http://images.all-free-download.com/images/graphicthumb/dog_foot_prints_background_repeating_design_6828604.jpg');
+  /* background-image: url(`http://www.catgames.co/wp-content/uploads/2018/02/web-page-color-picker-funycoloring-background.jpg`) */
+  /* background-color:red; */
   color: #333;
   margin: 20px;
-}
-#doggy{
-  text-align: center;
 }
 .items{
   color:darkred;
   font-weight: bold;
 }
-
-.gridcontainer{
-  display: flex;
-  flex-wrap:wrap;
-   text-align:center;
+#create {
+  color:black;
+  height: 50px;
+  width: 300px;
+  font-size: 30px;
+  text-decoration: none;
+}
+.dogList{
+  display:grid;
+  grid-template-columns:1fr,3fr;
 }
 .dogCard {
-  width: 30%;
-  color:#C62525;
+  grid-column-start:1fr;
+  grid-column-end:1fr;
   border-width: 5px;
   padding: 10px;
-  display:grid;
+  width: 40%;
 }
-#dogPictureHome{
-  font-size: 50px;
-  width:100%;
-  height:200px;
-}
-#delete{
-  text-align: center;
-}
+
+
 input {
   border-radius: 5px;
   height: 50px;
@@ -39,14 +40,30 @@ input {
   font-size: 30px;
 }
 
+#newsubmit {
+  background: lightgreen;
+}
+
+.home-button {
+  height: 50px;
+  width: 100px;
+}
+.del-but {
+  background-color: pink;
+}
+
+.upd-but {
+  background-color: orange;
+}
+
 button {
 
   background-color: lightgray;
   border-radius: 5px;
+  height: 100%;
+  width:25%;
   font-family: 'Patrick Hand', cursive;
   font-size: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 p {
@@ -62,6 +79,8 @@ img {
   width:100%;
   margin: 20px 0px;
 }
-a{
-  text-decoration: none;
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

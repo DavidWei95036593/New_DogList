@@ -12,14 +12,14 @@
   </center>
   <button type="button" name="button"><a href="new">Create A New Dog</a></button>
     <div id="dogs">
-    <p id="doggy">Dog List</p>
-    <div class="gridcontainer">
+    <p>Dog List</p>
+    <div id="dogList">
     {{#each dogs}}
            <section class="dogCard">
              <img src="/images/{{picture}}" alt="No Picture Provided" id="dogPictureHome">
              <p id="dogName">Name:&nbsp;{{name}}</p>
              <p id="dogAge">Age:&nbsp;{{age}} years old</p>
-             <button type="button" name="button"><a href="{{id}}">More Info</a></button>
+             <button type="button" name="button" id="complete-info"><a href="{{id}}">More Info</a></button>
            </section>
            {{/each}}
     </div>
