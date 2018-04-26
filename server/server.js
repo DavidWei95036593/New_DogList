@@ -111,10 +111,6 @@ app.post('/dogs',upload.single(`picture`), (req, res) => {
     })
 
 
-
-
-
-
 app.delete(`/dogs/:id`,(req,res)=>{
   const id = req.params.id;
   Dog.findByIdAndRemove(id)
@@ -137,7 +133,6 @@ app.delete(`/dogs/:id`,(req,res)=>{
           res.status(404).send()
         } else {
           // res.send(Dog);
-
           res.redirect(`/dogs/${id}`);
 
 
