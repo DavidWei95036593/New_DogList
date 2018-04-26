@@ -136,13 +136,10 @@ app.delete(`/dogs/:id`,(req,res)=>{
         if (!Dog) {
           res.status(404).send()
         } else {
-<<<<<<< HEAD
-          // console.log(body);
-=======
           // res.send(Dog);
->>>>>>> parent of 7cd5708... all done
+
           res.redirect(`/dogs/${id}`);
-        }
+
 
       }).catch(e => {
         res.status(404).send(e);
