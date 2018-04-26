@@ -58,9 +58,6 @@ app.get(`/dogs/home`,(req,res)=>{
   })
 })
 
-
-
-
 app.post('/dogs',upload.single(`picture`), (req, res) => {
   let name = req.body.name;
   let age = req.body.age;
@@ -81,13 +78,14 @@ app.post('/dogs',upload.single(`picture`), (req, res) => {
     })
     dog.save()
     .then(dog => {
+
     res.redirect('/dogs/home');
     })
     .catch(e => {
+      console.log(e);
       res.status(400).send();
     })}
   })
-
 
   app.post('/dogs/:id',upload.single(`picture`), (req, res) => {
     let name = req.body.name;
@@ -127,20 +125,18 @@ app.delete(`/dogs/:id`,(req,res)=>{
     })
   })
 
-  app.patch('/dogs/:id',upload.single(`picture`), (req, res) => {
+  app.patch('/dogs/:id',upload.single(`picture`),(req, res) => {
     const id = req.params.id;
     const body = req.body;
     const file = req.file;
-
-    console.log(body.picture);
-    const picture = body.picture;
-    console.log(picture);
+    console.log(`file:`,file);
+    // console.log(body.picture);
     Dog.findByIdAndUpdate(id,body)
       .then(Dog => {
-
         if (!Dog) {
           res.status(404).send()
         } else {
+          // console.log(body);
           res.redirect(`/dogs/${id}`);
         }
 
@@ -170,9 +166,6 @@ app.get(`/dogs/:id/update`,(req,res)=>{
       res.status(404).send(e);
     })
 })
-
-
-
 
 app.listen(port, () => {
   console.log( `Listening on port ${port}`);
