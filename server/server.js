@@ -87,7 +87,7 @@ app.post('/dogs',upload.single(`picture`), (req, res) => {
     })}
   })
 
-  app.post('/dogs/:id',upload.single(`picture`), (req, res) => {
+  app.post('/dogs/:id'), (req, res) => {
     let name = req.body.name;
     let file = req.file;
     let age = req.body.age;
