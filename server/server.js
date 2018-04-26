@@ -9,9 +9,7 @@ const _ = require(`lodash`);
 const methodOverride = require(`method-override`);
 const app = express();
 
-const upload = multer({ dest: './public/images' });
-
-
+const upload = multer({ dest: '.././public/images' });
 
 //hbs set up
 app.set('view engine','hbs');
@@ -61,17 +59,13 @@ app.get(`/dogs/home`,(req,res)=>{
 })
 
 
-app.post(`/dogs`,upload.single(`picture`),(req,res)=>{
-  console.log(req.body);
-  console.log(req.file);
-})
 
 
-
-app.post('/dogs', (req, res) => {
+app.post('/dogs',upload.single(`picture`), (req, res) => {
   let name = req.body.name;
   let age = req.body.age;
-  let picture = req.body.picture;
+  let file = req.file;
+  let picture = file.filename;
   let personality = req.body.personality;
   let description = req.body.description;
   if(!req.body.name||!req.body.age){
@@ -81,13 +75,13 @@ app.post('/dogs', (req, res) => {
     const dog = new Dog({
       name: req.body.name,
       age: req.body.age,
-      picture: req.body.picture,
+      picture: file.filename,
       personality: req.body.personality,
       description: req.body.description
     })
     dog.save()
     .then(dog => {
-      res.redirect('/dogs/home');
+    res.redirect('/dogs/home');
     })
     .catch(e => {
       res.status(400).send();
@@ -95,17 +89,17 @@ app.post('/dogs', (req, res) => {
   })
 
 
-  app.post('/dogs/:id', (req, res) => {
+  app.post('/dogs/:id',upload.single(`picture`), (req, res) => {
     let name = req.body.name;
+    let file = req.file;
     let age = req.body.age;
-    let picture = req.body.picture;
+    let picture = file.filename;
     let personality = req.body.personality;
     let description = req.body.description;
-
-      const dog = new Dog({
+    const dog = new Dog({
         name: req.body.name,
         age: req.body.age,
-        picture: req.body.picture,
+        picture: file.filename,
         personality: req.body.personality,
         description: req.body.description
       })
@@ -133,9 +127,14 @@ app.delete(`/dogs/:id`,(req,res)=>{
     })
   })
 
-  app.patch('/dogs/:id', (req, res) => {
+  app.patch('/dogs/:id',upload.single(`picture`), (req, res) => {
     const id = req.params.id;
     const body = req.body;
+    const file = req.file;
+
+    console.log(body.picture);
+    const picture = body.picture;
+    console.log(picture);
     Dog.findByIdAndUpdate(id,body)
       .then(Dog => {
 
