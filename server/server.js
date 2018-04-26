@@ -2,14 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const {Dog} = require('./models/dog.js');
-const multer = require(`multer`);
 const hbs = require(`hbs`);
 const path = require(`path`);
 const _ = require(`lodash`);
 const methodOverride = require(`method-override`);
 const app = express();
-
-const upload = multer({ dest: '.././public/images' });
 
 //hbs set up
 app.set('view engine','hbs');
@@ -58,11 +55,13 @@ app.get(`/dogs/home`,(req,res)=>{
   })
 })
 
-app.post('/dogs',upload.single(`picture`), (req, res) => {
+
+
+
+app.post('/dogs', (req, res) => {
   let name = req.body.name;
   let age = req.body.age;
-  let file = req.file;
-  let picture = file.filename;
+  let picture = req.body.picture;
   let personality = req.body.personality;
   let description = req.body.description;
   if(!req.body.name||!req.body.age){
@@ -72,32 +71,31 @@ app.post('/dogs',upload.single(`picture`), (req, res) => {
     const dog = new Dog({
       name: req.body.name,
       age: req.body.age,
-      picture: file.filename,
+      picture: req.body.picture,
       personality: req.body.personality,
       description: req.body.description
     })
     dog.save()
     .then(dog => {
-
-    res.redirect('/dogs/home');
+      res.redirect('/dogs/home');
     })
     .catch(e => {
-      console.log(e);
       res.status(400).send();
     })}
   })
 
-  app.post('/dogs/:id'), (req, res) => {
+
+  app.post('/dogs/:id', (req, res) => {
     let name = req.body.name;
-    let file = req.file;
     let age = req.body.age;
-    let picture = file.filename;
+    let picture = req.body.picture;
     let personality = req.body.personality;
     let description = req.body.description;
-    const dog = new Dog({
+
+      const dog = new Dog({
         name: req.body.name,
         age: req.body.age,
-        picture: file.filename,
+        picture: req.body.picture,
         personality: req.body.personality,
         description: req.body.description
       })
@@ -111,6 +109,10 @@ app.post('/dogs',upload.single(`picture`), (req, res) => {
     })
 
 
+
+
+
+
 app.delete(`/dogs/:id`,(req,res)=>{
   const id = req.params.id;
   Dog.findByIdAndRemove(id)
@@ -121,20 +123,17 @@ app.delete(`/dogs/:id`,(req,res)=>{
     })
   })
 
-  app.patch('/dogs/:id',upload.single(`picture`),(req, res) => {
+  app.patch('/dogs/:id', (req, res) => {
     const id = req.params.id;
     const body = req.body;
-    const file = req.file;
-    console.log(`file:`,file);
-    // console.log(body.picture);
     Dog.findByIdAndUpdate(id,body)
       .then(Dog => {
+
         if (!Dog) {
           res.status(404).send()
         } else {
-          // res.send(Dog);
           res.redirect(`/dogs/${id}`);
-
+        }
 
       }).catch(e => {
         res.status(404).send(e);
@@ -162,6 +161,8 @@ app.get(`/dogs/:id/update`,(req,res)=>{
       res.status(404).send(e);
     })
 })
+
+
 
 app.listen(port, () => {
   console.log( `Listening on port ${port}`);
